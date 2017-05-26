@@ -17,6 +17,9 @@
 - (IBAction)loginWithApp:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UILabel *lblname;
+- (IBAction)loginWithWeb:(id)sender;
+
+- (void)setOAuthToken:(NSString *)token oauthVerifier:(NSString *)verfier;
 
 
 

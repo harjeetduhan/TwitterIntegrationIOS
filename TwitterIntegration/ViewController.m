@@ -105,7 +105,7 @@ typedef void (^accountChooserBlock_t)(ACAccount *account, NSString *errorMessage
     }];
     
 }
-//Chosse Account
+//Chosse Accounts
 - (void)chooseAccount
 {
     ACAccountType *accountType = [_accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
@@ -156,4 +156,73 @@ typedef void (^accountChooserBlock_t)(ACAccount *account, NSString *errorMessage
 }
 ///****************** END LOGIN WITH APP----------------------------------*******************
 
+
+///******************  LOGIN WITH WEB----------------------------------*******************
+
+- (IBAction)loginWithWeb:(id)sender
+{
+   _twitter = [STTwitterAPI twitterAPIWithOAuthConsumerKey:@"zISxSgkIdO58W0nYPn8dVbsE6"
+                                                 consumerSecret:@"lJm3TDnTxd64tQXehQWxj4Jggnk5BY3VtKiwm9VUJfBZSinqa2"];
+    
+    //_loginStatusLabel.text = @"Trying to login with Safari...";
+   // _loginStatusLabel.text = @"";
+    
+    [_twitter postTokenRequest:^(NSURL *url, NSString *oauthToken)
+     {
+         [[UIApplication sharedApplication] openURL:url];
+
+        NSLog(@"-- url: %@", url);
+        NSLog(@"-- oauthToken: %@", oauthToken);
+        
+//        if([self.openSafariSwitch isOn])
+//        {
+//            [[UIApplication sharedApplication] openURL:url];
+//        } else
+//        {
+//            WebViewVC *webViewVC = [self.storyboard instantiateViewControllerWithIdentifier:@"WebViewVC"];
+//            
+//            [self presentViewController:webViewVC animated:YES completion:^{
+//                NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//                [webViewVC.webView loadRequest:request];
+//            }];
+//        }
+        
+    } authenticateInsteadOfAuthorize:NO
+                    forceLogin:@(YES)
+                    screenName:nil
+                 oauthCallback:@"myapp://twitter_access_tokens/"
+                    errorBlock:^(NSError *error) {
+                        NSLog(@"-- error: %@", error);
+                       // _loginStatusLabel.text = [error localizedDescription];
+                    }];
+
+}
+
+
+- (void)setOAuthToken:(NSString *)token oauthVerifier:(NSString *)verifier {
+    
+    // in case the user has just authenticated through WebViewVC
+    [self dismissViewControllerAnimated:YES completion:^{
+        //
+    }];
+    
+    [_twitter postAccessTokenRequestWithPIN:verifier successBlock:^(NSString *oauthToken, NSString *oauthTokenSecret, NSString *userID, NSString *screenName)
+    {
+        NSLog(@"-- screenName: %@", screenName);
+        
+      //  _loginStatusLabel.text = [NSString stringWithFormat:@"%@ (%@)", screenName, userID];
+       // _usernameusername=screenName;
+        
+        
+        
+        
+    } errorBlock:^(NSError *error)
+    {
+        NSLog(@"-- %@", [error localizedDescription]);
+    }];
+}
+
+
+
+///******************END  LOGIN WITH WEB----------------------------------*******************
 @end

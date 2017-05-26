@@ -639,6 +639,7 @@
 				A9415BA41ED8978500BCE530 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A9415BA51ED8978500BCE530 /* Build configuration list for PBXNativeTarget "TwitterIntegrationTests" */ = {
 			isa = XCConfigurationList;
@@ -647,6 +648,7 @@
 				A9415BA71ED8978500BCE530 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A9415BA81ED8978500BCE530 /* Build configuration list for PBXNativeTarget "TwitterIntegrationUITests" */ = {
 			isa = XCConfigurationList;
@@ -655,6 +657,7 @@
 				A9415BAA1ED8978500BCE530 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
