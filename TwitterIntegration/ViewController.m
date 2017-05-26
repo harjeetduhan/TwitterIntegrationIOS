@@ -105,7 +105,7 @@ typedef void (^accountChooserBlock_t)(ACAccount *account, NSString *errorMessage
     }];
     
 }
-
+//Chosse Account
 - (void)chooseAccount
 {
     ACAccountType *accountType = [_accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
