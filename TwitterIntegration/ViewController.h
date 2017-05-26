@@ -7,8 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "STTwitter.h"
+#import <Social/Social.h>
+#import <Accounts/Accounts.h>
+#import <Social/SLRequest.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController<STTwitterAPIOSProtocol>
+
+- (IBAction)loginWithApp:(id)sender;
+
+@property (strong, nonatomic) IBOutlet UILabel *lblname;
+
 
 
 @end
